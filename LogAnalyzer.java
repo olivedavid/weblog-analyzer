@@ -9,7 +9,7 @@ public class LogAnalyzer
     // Where to calculate the hourly access counts.
     private int[] hourCounts;
     // Use a LogfileReader to access the data.
-   // private int[] dayCounts;
+    private int[] dayCounts;
     private LogfileReader reader;
 
     /**
@@ -21,7 +21,7 @@ public class LogAnalyzer
         // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
-       // dayCounts = new int [28];
+        dayCounts = new int[28];
         // Create the reader to obtain the data.
         reader = new LogfileReader(logfile);
     }
@@ -154,7 +154,7 @@ public class LogAnalyzer
         // while(reader.hasNext()) {
             // LogEntry entry = reader.next();
             // int day = entry.getDay();
-            // dayCounts[day]++;
+            // dayCounts[day -1]++;
         // }
     // }
     
@@ -190,5 +190,6 @@ public class LogAnalyzer
     public void printData()
     {
         reader.printData();
+        
     }
 }
