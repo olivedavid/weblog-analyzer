@@ -38,7 +38,8 @@ public class LogAnalyzer
     
     /**
      * Return number of accesses recorded in the log file.
-     *
+     * @return The total number of accesses in the log file.
+     * 
      * Exercise 7.13 and 7.14
      */
     public int numberOfAccesses()
@@ -63,6 +64,46 @@ public class LogAnalyzer
             System.out.println(hour + ": " + hourCounts[hour]);
         }
     }
+    
+    /** 
+     * @return Return the busiest hour in the log file.
+     * hours are from 0-23.
+     */
+    public int busiestHour()
+    {
+      int busiestHr = 0;
+      for(int hour=0; hour< hourCounts.length; hour++)
+        { 
+            if(hourCounts[busiestHr] < hourCounts[hour])
+            {
+                busiestHr = hour;
+            }
+              
+        } 
+        return busiestHr ;
+       
+    }
+    
+    /** 
+     * @return Return the quietest hour in the log file.
+     * hours are from 0-23.
+     */
+    public int quietestHour()
+    {
+      int quietestHr = 0;
+      for(int hour=0; hour< hourCounts.length; hour++)
+        { 
+            if(hourCounts[quietestHr] > hourCounts[hour])
+            {
+               quietestHr = hour;
+            }
+              
+        } 
+        return quietestHr ;
+       
+    }
+    
+    
     
     /**
      * Print the lines of data read by the LogfileReader
