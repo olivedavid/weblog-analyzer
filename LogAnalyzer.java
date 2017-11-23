@@ -9,6 +9,7 @@ public class LogAnalyzer
     // Where to calculate the hourly access counts.
     private int[] hourCounts;
     // Use a LogfileReader to access the data.
+   // private int[] dayCounts;
     private LogfileReader reader;
 
     /**
@@ -20,6 +21,7 @@ public class LogAnalyzer
         // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
+       // dayCounts = new int [28];
         // Create the reader to obtain the data.
         reader = new LogfileReader(logfile);
     }
@@ -35,6 +37,7 @@ public class LogAnalyzer
             hourCounts[hour]++;
         }
     }
+    
     
     /**
      * Return number of accesses recorded in the log file.
@@ -84,6 +87,15 @@ public class LogAnalyzer
        
     }
     
+    //print the busiest hour
+    public void printBusiestHour()
+    { 
+        System.out.println("Busiest Hour: " + busiestHour());
+    }
+    
+    
+    
+    
     /** 
      * @return Return the quietest hour in the log file.
      * hours are from 0-23.
@@ -102,6 +114,73 @@ public class LogAnalyzer
         return quietestHr ;
        
     }
+    
+    //print the quietest hour
+    public void printQuietestHour()
+    { 
+        System.out.println("Quietest Hour: " + quietestHour());
+    }
+    
+    public int busiestTwoHour()
+    {
+     int busiestTwoHour = 0;
+     int busiestTwoHourCounts = 0;
+     for(int hour = 0; hour<hourCounts.length - 1; hour++)
+     {   
+         //add the counts for the two hours
+         int twoHourCounts = hourCounts[hour] + hourCounts[hour + 1]; 
+         if(twoHourCounts > busiestTwoHourCounts)
+         {
+             busiestTwoHour = hour;
+             busiestTwoHourCounts = twoHourCounts;    
+         }
+     }
+        return busiestTwoHour;
+        //return busiestTwoHourCounts; CAN YOU ONLY MAKE ONE RETURN.
+    }
+    
+    public void printBusiestTwoHour()
+    {
+        System.out.println("Busiest Two Hour starts at hour: " + busiestTwoHour() );
+    }
+    
+   
+    // PROBLEM: KEEPS SAYING OUT OF BOUND. ASK PROFESSOR.
+    // /**
+     // * Analyze the hourly access data from the log file.
+     // */
+    // public void analyzeDailyData()
+    // {
+        // while(reader.hasNext()) {
+            // LogEntry entry = reader.next();
+            // int day = entry.getDay();
+            // dayCounts[day]++;
+        // }
+    // }
+    
+    // /**
+     // * @return Returns the busiest DAY 
+     // */
+    
+    // public int busiestDay()
+    // {
+        // analyzeDailyData();
+        // int busiestDay = 0;
+        // for( int day = 0; day < dayCounts.length; day++)
+        // {
+          // if (dayCounts[busiestDay] < dayCounts[day])
+          // {
+              // busiestDay = day;
+          // }
+        // }
+        // return busiestDay;
+         
+    // }
+    
+    // public void printBusiestDay()
+    // { 
+        // System.out.println("Busiest Day: " + busiestDay());
+    // }
     
     
     
