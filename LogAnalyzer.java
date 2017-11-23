@@ -35,6 +35,21 @@ public class LogAnalyzer
             hourCounts[hour]++;
         }
     }
+    
+    /**
+     * Return number of accesses recorded in the log file.
+     *
+     * Exercise 7.13 and 7.14
+     */
+    public int numberOfAccesses()
+    {
+        int total = 0;
+        for(int hour=0; hour< hourCounts.length; hour++)
+        { 
+            total += hourCounts[hour];
+        }
+        return total;
+    }
 
     /**
      * Print the hourly counts.
